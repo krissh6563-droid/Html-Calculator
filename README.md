@@ -1,2 +1,1 @@
-# html_calculator
-calculator using JavaScript
+# Mitali Birthday 
