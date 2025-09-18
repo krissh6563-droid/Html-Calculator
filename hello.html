@@ -1,46 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday!</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #6DD5FA, #FF758C);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1em;
+      box-sizing: border-box;
+    }
+
+    /* Card */
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 2em;
+      max-width: 700px;
+      width: 90%;
+      text-align: center;
+      color: white;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5em;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin: 0.5em 0;
+      line-height: 1.6;
+    }
+
+    button {
+      margin-top: 1.5em;
+      padding: 0.8em 1.5em;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      background: #fff;
+      color: #FF4081;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #FF4081;
+      color: #fff;
+    }
+
+    /* Balloons */
+    .balloon {
+      position: absolute;
+      bottom: -150px;
+      width: 80px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: #FFD700;
+      opacity: 0.7;
+      animation: floatUp 8s linear infinite;
+      z-index: 0;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-120vh); }
+    }
+
+    /* Confetti */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #fff;
+      opacity: 0.8;
+      animation: fall 5s linear infinite;
+      z-index: 0;
+    }
+    @keyframes fall {
+      0% { transform: translateY(-10vh) rotate(0deg); }
+      100% { transform: translateY(110vh) rotate(360deg); }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* 📱 Mobile Responsive */
+    @media (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      p { font-size: 1rem; }
+      .card { padding: 1.5em; }
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.6rem; }
+      p { font-size: 0.9rem; }
+      button { padding: 0.6em 1.2em; font-size: 0.9rem; }
+    }
+  </style>
 </head>
 <body>
-    <div class = title >GeeksforGeeks Calculator</div> 
-      <table> 
-         <tr> 
-            <td colspan="3"><input type="text" id="result"/></td> 
-            <!-- clr() function will call clr to clear all value -->
-            <td><input type="button" value="c" onclick="clr()"/> </td> 
-         </tr> 
-         <tr> 
-            <!-- create button and assign value to each button -->
-            <!-- dis("1") will call function dis to display value -->
-            <td><input type="button" value="1" onclick="dis('1')"/> </td> 
-            <td><input type="button" value="2" onclick="dis('2')"/> </td> 
-            <td><input type="button" value="3" onclick="dis('3')"/> </td> 
-            <td><input type="button" value="/" onclick="dis('/')"/> </td> 
-         </tr> 
-         <tr> 
-            <td><input type="button" value="4" onclick="dis('4')"/> </td> 
-            <td><input type="button" value="5" onclick="dis('5')"/> </td> 
-            <td><input type="button" value="6" onclick="dis('6')"/> </td> 
-            <td><input type="button" value="-" onclick="dis('-')"/> </td> 
-         </tr> 
-         <tr> 
-            <td><input type="button" value="7" onclick="dis('7')"/> </td> 
-            <td><input type="button" value="8" onclick="dis('8')"/> </td> 
-            <td><input type="button" value="9" onclick="dis('9')"/> </td> 
-            <td><input type="button" value="+" onclick="dis('+')"/> </td> 
-         </tr> 
-         <tr> 
-            <td><input type="button" value="." onclick="dis('.')"/> </td> 
-            <td><input type="button" value="0" onclick="dis('0')"/> </td> 
-            <!-- solve function call function solve to evaluate value -->
-            <td><input type="button" value="=" onclick="solve()"/> </td> 
-            <td><input type="button" value="*" onclick="dis('*')"/> </td> 
-         </tr> 
-      </table> 
+  <!-- Greeting Card -->
+  <div class="card">
+    <h1>🎉 Happy Birthday! 🎉</h1>
+    <p>
+      Wishing you a bug-free year ahead, full of successful commits, smooth deployments, 
+      and endless coffee ☕ to fuel your brilliant code.<br><br>
+      May your personal and professional life always run on the latest stable version of 
+      happiness and success!
+    </p>
+    <button onclick="playSong()">🎶 Play Birthday Song</button>
+  </div>
+
+  <!-- Hidden audio -->
+  <audio id="birthdaySong" src="https://www2.cs.uic.edu/~i101/SoundFiles/StarWars60.wav"></audio>
+
+  <script>
+    // Balloons
+    for (let i = 0; i < 15; i++) {
+      let balloon = document.createElement("div");
+      balloon.className = "balloon";
+      balloon.style.left = Math.random() * 100 + "vw";
+      balloon.style.backgroundColor =
+        ["#FF4500","#FFD700","#00FA9A","#1E90FF","#FF69B4"][Math.floor(Math.random()*5)];
+      balloon.style.animationDuration = (5 + Math.random() * 5) + "s";
+      document.body.appendChild(balloon);
+    }
+
+    // Confetti
+    for (let i = 0; i < 40; i++) {
+      let confetti = document.createElement("div");
+      confetti.className = "confetti";
+      confetti.style.left = Math.random() * 100 + "vw";
+      confetti.style.backgroundColor =
+        ["#FF4500","#FFD700","#00FA9A","#1E90FF","#FF69B4"][Math.floor(Math.random()*5)];
+      confetti.style.animationDuration = (3 + Math.random() * 3) + "s";
+      confetti.style.width = confetti.style.height = (5 + Math.random() * 8) + "px";
+      document.body.appendChild(confetti);
+    }
+
+    // Play song
+    function playSong() {
+      document.getElementById("birthdaySong").play();
+    }
+  </script>
 </body>
 </html>
